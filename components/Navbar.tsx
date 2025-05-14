@@ -16,14 +16,14 @@ export function Navbar() {
         {/* Links */}
         <nav className="hidden md:flex items-center gap-4">
           <Button variant="ghost" asChild>
-            <Link href="#" className="text-sm text-white">PROJECTS</Link>
+            <Link href="/projects" className="text-sm text-white">PROJECTS</Link>
           </Button>
           <Button variant="ghost" asChild>
-            <Link href="#" className="text-sm text-white">ABOUT ME</Link>
+            <Link href="/about" className="text-sm text-white">ABOUT ME</Link>
           </Button>
 
           <Button variant="ghost" className="text-white hover:text-gray-300" asChild>
-            <Link href="https://linkedin.com" target="_blank" rel="noreferrer"><Linkedin className="h-5 w-5" /></Link>
+            <Link href="https://www.linkedin.com/in/danielvco/" target="_blank" rel="noreferrer"><Linkedin className="h-5 w-5" /></Link>
           </Button>
 
           <Button className="bg-white text-black hover:bg-gray-200" asChild>
