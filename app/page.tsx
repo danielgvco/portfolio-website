@@ -1,8 +1,9 @@
-import HeroParticles from "@/components/HeroParticles";
-import HeroMeteors from "@/components/HeroMeteors";
+import Hero from "@/components/Hero";
 
 export default function Home() {
   return (
-    <HeroParticles />
+    <div>
+      <Hero />
+    </div>
   );
 }
