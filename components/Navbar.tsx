@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { RainbowButton } from './magicui/rainbow-button';
 import { Linkedin } from 'lucide-react';
 
 export function Navbar() {
@@ -26,9 +27,9 @@ export function Navbar() {
             <Link href="https://www.linkedin.com/in/danielvco/" target="_blank" rel="noreferrer"><Linkedin className="h-5 w-5" /></Link>
           </Button>
 
-          <Button className="bg-white text-black hover:bg-gray-200" asChild>
-            <Link href="/contact">CONTACT ME</Link>
-          </Button>
+          <Link href="/contact">
+            <RainbowButton variant="outline">CONTACT</RainbowButton>
+          </Link>
         </nav>
       </div>
     </header>
