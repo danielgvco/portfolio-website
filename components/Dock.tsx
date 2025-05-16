@@ -12,8 +12,10 @@ import {
 import { buttonVariants } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
+import { ShineBorder } from "./magicui/shine-border";
 import React from "react";
 
+// Custom filled LinkedIn icon taken from MagicUI docs
 const LinkedInIcon = (props: React.SVGProps<SVGSVGElement>) => (
   <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" {...props}>
     <title>LinkedIn</title>
@@ -33,58 +35,67 @@ export default function Dock() {
 
   return (
     <TooltipProvider>
-      <MagicDock
-        direction="middle"
-        className={cn(
-          "fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex rounded-2xl border border-gray-300/70 bg-white/40 p-2 backdrop-blur-sm dark:border-gray-700/70 dark:bg-gray-900/40"
-        )}
-      >
-        {navItems.map(({ href, icon: Icon, label }) => (
-          <DockIcon key={label}>
+      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 w-max">
+        <MagicDock
+          direction="middle"
+          className={cn(
+            "relative flex rounded-2xl bg-white/40 p-2 backdrop-blur-md dark:bg-gray-900/40 overflow-hidden"
+          )}
+        >
+          {/* Animated shine border overlay */}
+          <ShineBorder
+            shineColor="black"
+            borderWidth={1}
+            className="pointer-events-none absolute inset-0 rounded-2xl"
+          />
+
+          {navItems.map(({ href, icon: Icon, label }) => (
+            <DockIcon key={label}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link
+                    href={href}
+                    aria-label={label}
+                    className={cn(
+                      buttonVariants({ variant: "ghost", size: "icon" }),
+                      "size-12 rounded-full"
+                    )}
+                  >
+                    <Icon className="size-5" />
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{label}</p>
+                </TooltipContent>
+              </Tooltip>
+            </DockIcon>
+          ))}
+
+          <Separator orientation="vertical" className="h-full" />
+
+          <DockIcon>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Link
-                  href={href}
-                  aria-label={label}
+                  href="https://www.linkedin.com/in/danielvco/"
+                  aria-label="LinkedIn"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={cn(
                     buttonVariants({ variant: "ghost", size: "icon" }),
-                    "size-12 rounded-full backdrop-blur-0"
+                    "size-12 rounded-full"
                   )}
                 >
-                  <Icon className="size-5" />
+                  <LinkedInIcon className="size-5" />
                 </Link>
               </TooltipTrigger>
               <TooltipContent>
-                <p>{label}</p>
+                <p>LinkedIn</p>
               </TooltipContent>
             </Tooltip>
           </DockIcon>
-        ))}
-
-        <Separator orientation="vertical" className="h-full" />
-
-        <DockIcon>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Link
-                href="https://www.linkedin.com/in/danielvco/"
-                aria-label="LinkedIn"
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn(
-                  buttonVariants({ variant: "ghost", size: "icon" }),
-                  "size-12 rounded-full backdrop-blur-0"
-                )}
-              >
-                <LinkedInIcon className="size-5" />
-              </Link>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>LinkedIn</p>
-            </TooltipContent>
-          </Tooltip>
-        </DockIcon>
-      </MagicDock>
+        </MagicDock>
+      </div>
     </TooltipProvider>
   );
 }
